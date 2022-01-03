@@ -31,7 +31,7 @@ const AppHeader = ({ open, toggleDrawer, drawerWidth }) => {
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Dashboard
+          Learning Management System
         </Typography>
       </Toolbar>
     </AppBar>

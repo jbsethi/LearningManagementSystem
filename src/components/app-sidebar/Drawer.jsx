@@ -12,6 +12,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         duration: theme.transitions.duration.enteringScreen,
       }),
       boxSizing: 'border-box',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+        ...(open && {
+          position: 'fixed',
+          display: 'block'
+        })
+      },
       ...(!open && {
         overflowX: 'hidden',
         transition: theme.transitions.create('width', {

@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Divider from '@mui/material/Divider';
@@ -11,22 +12,28 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Drawer from './Drawer'
 import routes from '../../routes'
 
-const listItems = (
-  routes
-    .filter(route => route.meta.nav)
-    .map((route, rIdx) => {
-      return (
-        <ListItemButton key={rIdx}>
-          <ListItemIcon>
-            {route.meta.icon}
-          </ListItemIcon>
-          <ListItemText primary={route.meta.name} />
-        </ListItemButton>
-      )
-    })
-)
-
 const AppSidebar = ({ open, toggleDrawer, drawerWidth }) => {
+  const history = useHistory()
+
+  const handleListItemClick = (route) => {
+    history.push(route.path)
+  }
+
+  const listItems = (
+    routes
+      .filter(route => route.meta.nav)
+      .map((route, rIdx) => {
+        return (
+          <ListItemButton key={rIdx} onClick={() => handleListItemClick(route)}>
+            <ListItemIcon>
+              {route.meta.icon}
+            </ListItemIcon>
+            <ListItemText primary={route.meta.name} />
+          </ListItemButton>
+        )
+      })
+  )
+
   return (
     <Drawer variant="permanent" open={open} width={drawerWidth} >
       <Toolbar

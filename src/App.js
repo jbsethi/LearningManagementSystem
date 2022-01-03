@@ -6,23 +6,21 @@ import Login from './pages/login'
 import DashboardLayout from './layouts/dashboard-layout'
 
 function App() {
-  const user = useSelector(state => state.user)
-
-  console.log(user)
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
 
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
           {
-            !user.isLoggedIn ?
+            !isLoggedIn ?
             <Login />:
             <Redirect to="/" />
           }
         </Route>
-        <Route exact path="/">
+        <Route path="/">
           {
-            user.isLoggedIn ?
+            isLoggedIn ?
             <DashboardLayout />:
             <Redirect to="/login" />
           }
