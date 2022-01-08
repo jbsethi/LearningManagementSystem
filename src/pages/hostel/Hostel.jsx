@@ -35,6 +35,10 @@ const Hostel = () => {
       </Grid>
 
       <Modal
+        sx={{ display: {
+          sm: 'block',
+          md: 'none'
+        } }}
         open={open}
         onClose={() => setOpen(false)}
       >

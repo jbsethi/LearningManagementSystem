@@ -1,4 +1,4 @@
-import { useState, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,6 +16,22 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const resizeEvent = useCallback((e) => {
+    const windowWidth = e.currentTarget.innerWidth;
+
+    if (windowWidth < 600) {
+      setOpen(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeEvent)
+
+    return () => {
+      window.removeEventListener('resize', resizeEvent)
+    }
+  }, [resizeEvent])
 
   return (
     <Box sx={{ display: 'flex' }}>
