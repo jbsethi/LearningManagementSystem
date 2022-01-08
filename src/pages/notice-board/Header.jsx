@@ -4,7 +4,11 @@ import { grey } from '@mui/material/colors';
 
 const CardHeader = ({ children }) => {
   return (
-    <Toolbar sx={{ borderBottom: `1px solid ${grey[400]}` }}>
+    <Toolbar sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      borderBottom: `1px solid ${grey[400]}`
+    }}>
       <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
         {children}
       </Typography>
